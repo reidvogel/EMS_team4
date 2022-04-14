@@ -17,10 +17,10 @@ class User():
 
     def editUser(self, var):
         '''var is what they want to update'''
-        if var == 1:
+        if var == 1: #Username
             print("Please enter a new username: ")
             self.name = input()
-        elif var == 2:
+        elif var == 2: #Password
             print(f"Please enter a new password for {self.name}: ")
             self.password = input()
     def showList(self):
@@ -41,17 +41,29 @@ class User():
     
   
             
-
-
-
-
-def Show():
+class Show():
     list_of_shows = []
     def __init__(self, name, episodes):
         self.name = name
         self.ep = episodes
     def addShow(self):
         Show.list_of_shows.append(self)
+        print(f"{self.name} added to List of Available Shows")
+    def delShow(self):
+        Show.list_of_shows.remove(self)
+        print(f"{self.name} removed from List of Available Shows")
+    def ListShows(self):
+        print("Here are all the available shows")
+        for i in Show.list_of_shows:
+            print(f"{i}: {Show.list_of_shows[i]}")
+    def UpdateShow(self): #used to change number of episodes
+        self.ListShows()
+        print("Please enter the number corresponding to the show you would like to update: ")
+        index = input()
+        Show.list_of_shows[index].ep = input()
+        print(f"The number of episodes for {Show.list_of_shows[index]} is now {Show.list_of_shows[index].ep}")
+        
+
 
 
 
