@@ -1,5 +1,7 @@
+list_of_users = []
+list_of_shows = []
+
 class User():
-    list_of_users = []
     def __init__(self, username, password, role):
         self.name = username
         self.password = password
@@ -7,9 +9,9 @@ class User():
         self.shows_prog = []
         self.role = role #user or admin
     def addUser(self): #This is used by sign up or admin
-        User.list_of_users.append(self)
+        list_of_users.append(self)
     def delUser(self): 
-        User.list_of_users.remove(self)
+        list_of_users.remove(self)
     def addShow(self, show):
         self.shows.append(show)
     def delShow(self, show):
@@ -42,26 +44,25 @@ class User():
   
             
 class Show():
-    list_of_shows = []
     def __init__(self, name, episodes):
         self.name = name
         self.ep = episodes
     def addShow(self):
-        Show.list_of_shows.append(self)
+        list_of_shows.append(self)
         print(f"{self.name} added to List of Available Shows")
     def delShow(self):
-        Show.list_of_shows.remove(self)
+        list_of_shows.remove(self)
         print(f"{self.name} removed from List of Available Shows")
     def ListShows(self):
         print("Here are all the available shows")
-        for i in Show.list_of_shows:
-            print(f"{i}: {Show.list_of_shows[i]}")
+        for i in list_of_shows:
+            print(f"{i}: {list_of_shows[i]}")
     def UpdateShow(self): #used to change number of episodes
         self.ListShows()
         print("Please enter the number corresponding to the show you would like to update: ")
         index = input()
-        Show.list_of_shows[index].ep = input()
-        print(f"The number of episodes for {Show.list_of_shows[index]} is now {Show.list_of_shows[index].ep}")
+        list_of_shows[index].ep = input()
+        print(f"The number of episodes for {list_of_shows[index]} is now {list_of_shows[index].ep}")
         
 
 
