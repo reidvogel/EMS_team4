@@ -21,14 +21,18 @@ class User():
         index = self.shows.pop(show.name) #delete the show and grab it's index
         del self.shows_prog[index] #remove the progress from this list as well
 
-    def editUser(self, var):
-        '''var is what they want to update'''
-        if var == 1: #Username
-            print("Please enter a new username: ")
-            self.name = input()
-        elif var == 2: #Password
-            print(f"Please enter a new password for {self.name}: ")
-            self.password = input()
+    def editUser(self):
+        while True:
+            try:
+                var = input("To update username, press 1\n To update password, press 2")
+                if var == 1: #Username
+                    print("Please enter a new username: ")
+                    self.name = input()
+                elif var == 2: #Password
+                    print(f"Please enter a new password for {self.name}: ")
+                    self.password = input()
+                else: raise Exception
+            except Exception: print("Please enter a valid option")
     def showList(self):
         print(f"These are the shows currently on {self.name}'s list: ")
         for i in self.shows:
@@ -38,14 +42,17 @@ class User():
         for i in self.shows:
             print(f"{i+1}: {self.shows[i]}, Progress: {self.shows_prog[i+1]}") #Gotta account for index starting at 0
     def updateShowProg(self):
-        self.showListandProg()
-        print("Please enter the number corresponding to the show you would like to update progress: ")
-        index = input() - 1 #Gotta account for index starting at 0
-        print(f"Enter the number of episodes you have watched for {self.shows[index]}")
-        self.shows_prog[index] = input() #maybe check it's not more than episodes available
+        while True:
+            try:
+                self.showListandProg()
+                print("Please enter the number corresponding to the show you would like to update progress: ")
+                index = input() - 1 #Gotta account for index starting at 0
+                if index not in range(len(list_of_shows)): raise Exception
+                print(f"Enter the number of episodes you have watched for {self.shows[index]}")
+                self.shows_prog[index] = input() #maybe check it's not more than episodes available
+            except Exception: print("That is not a valid input")
         
-    
-  
+             
             
 class Show():
     def __init__(self, name, episodes):
