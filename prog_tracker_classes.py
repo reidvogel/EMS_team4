@@ -1,6 +1,8 @@
 list_of_users = []
 list_of_shows = []
 
+
+
 class User():
     def __init__(self, username, password, role):
         self.name = username
@@ -14,8 +16,10 @@ class User():
         list_of_users.remove(self)
     def addShow(self, show):
         self.shows.append(show)
+        self.shows_prog.append(0) #automatically 0
     def delShow(self, show):
-        self.shows.remove(show)
+        index = self.shows.pop(show.name) #delete the show and grab it's index
+        del self.shows_prog[index] #remove the progress from this list as well
 
     def editUser(self, var):
         '''var is what they want to update'''
