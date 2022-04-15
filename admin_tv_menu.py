@@ -26,25 +26,3 @@ def admin_tv_menu():
         case _:
             print("Not a valid input.")
 
-#user menu
-            
-def add_tv_show():
-    # input new tv show title:
-    title = input("Enter name of tv show: ")
-    
-def update_tv_show():
-    # Locate user by entering their username
-    
-    
-
-def remove_tvshow():
-    # Locate show by entering its title
-    title = input("Enter existing user's username: ")
-    for u in shows:
-        if u.username == username:
-            list_of_users == u
-            break
-        else:
-            print("Show not found")
-            return
-    show = [tvshow for tvshow in shows if shows.title != title]
