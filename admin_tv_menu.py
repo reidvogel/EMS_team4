@@ -1,4 +1,5 @@
-from prog_tracker_classes import User
+#imports
+from prog_tracker_classes import *
 
 
 # Administration User Menu options:
@@ -12,15 +13,16 @@ def admin_tv_menu():
 
         # See all tv shows
         case "1":
-            for show in shows: print(show)
-            for progress in shows_prog: print(progress)
+            Show.ListShows()
         # Add user information
         case "2":
-            add_tv_show()
+            Show.addShow()
+        #delete show
         case "3":
-            edit_tv_show()
+            Show.delShow()
         case "4":
-            remove_tvshow()
+        #edit tv show
+            Show.UpdateShow()
         case _:
             print("Not a valid input.")
 
@@ -28,10 +30,9 @@ def admin_tv_menu():
 def add_tv_show():
     # input new tv show title:
     title = input("Enter name of tv show: ")
-    # Input role of the new user:
-    progress_status = input("Enter 'not completed', 'in-progress', or 'completed': ")
-    shows.append(title)
-    shows_prog.append(progress_status)
+    Show.addshow(title)
+    
+    
 
 
 def edit_tv_show():
