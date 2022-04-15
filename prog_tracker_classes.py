@@ -1,7 +1,15 @@
 list_of_users = []
 list_of_shows = []
 
-
+def check_int():
+    #This function checks if an input was an int type
+    while True:
+        try:
+            arg = int(input())
+            result = isinstance(arg, int)
+            if result is True: return arg
+        except ValueError:
+            print("Please enter an integer")
 
 class User():
     def __init__(self, username, password, role):
@@ -22,7 +30,8 @@ class User():
         while True:
             try:
                 Show.ListShows
-                index = input("Please enter the number corresponding to the show you would like to add to your list")
+                print("Please enter the number corresponding to the show you would like to add to your list")
+                index = check_int()
                 if index not in range(len(Show.ListShows)): raise Exception
                 show = Show.ListShows[index]
                 self.shows.append(show)
@@ -33,7 +42,8 @@ class User():
         while True:
             try:
                 self.showList
-                index = input("Please enter the number of the show you would like to remove from your list")
+                print("Please enter the number of the show you would like to remove from your list")
+                index=check_int()
                 if index not in range(len(self.showList)): raise Exception
                 index = self.shows.pop(show.name) #delete the show and grab it's index
                 del self.shows_prog[index] #remove the progress from this list as well
@@ -42,13 +52,16 @@ class User():
     def editUser(self):
         while True:
             try:
-                var = input("To update username, press 1\n To update password, press 2")
+                print("To update username, press 1\nTo update password, press 2")
+                var = check_int()
                 if var == 1: #Username
                     print("Please enter a new username: ")
                     self.name = input()
+                    return
                 elif var == 2: #Password
                     print(f"Please enter a new password for {self.name}: ")
                     self.password = input()
+                    return
                 else: raise Exception
             except Exception: print("Please enter a valid option")
     def showList(self):
@@ -64,10 +77,11 @@ class User():
             try:
                 self.showListandProg()
                 print("Please enter the number corresponding to the show you would like to update progress: ")
-                index = input() - 1 #Gotta account for index starting at 0
+                index = check_int()
+                index = index - 1 #Gotta account for index starting at 0
                 if index not in range(len(list_of_shows)): raise Exception
                 print(f"Enter the number of episodes you have watched for {self.shows[index]}")
-                self.shows_prog[index] = input() #maybe check it's not more than episodes available
+                self.shows_prog[index] = check_int() #maybe check it's not more than episodes available
             except Exception: print("That is not a valid input")
 
            
@@ -83,7 +97,7 @@ class Show():
             try:
                 self.ListShows()
                 print("Please enter the number corresponding to the show you would like to update: ")
-                index = input()
+                index = check_int()
                 if index not in range(len(list_of_shows)): raise Exception
                 list_of_shows.remove(self)
                 print(f"{self.name} removed from List of Available Shows")
@@ -97,9 +111,9 @@ class Show():
             try:
                 self.ListShows()
                 print("Please enter the number corresponding to the show you would like to update: ")
-                index = input()
+                index = check_int()
                 if index not in range(len(list_of_shows)): raise Exception
-                list_of_shows[index].ep = input()
+                list_of_shows[index].ep = check_int()
                 print(f"The number of episodes for {list_of_shows[index]} is now {list_of_shows[index].ep}")
             except: Exception: print("That is not a valid input")
         
