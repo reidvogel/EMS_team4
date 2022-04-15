@@ -16,7 +16,10 @@ def admin_tv_menu():
             Show.ListShows()
         # Add user information
         case "2":
-            Show.addShow()
+            title = input()
+            ep = input()
+            new_show = Show(title,ep)
+            Show.addShow(new_show)
         #delete show
         case "3":
             Show.delShow()
