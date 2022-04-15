@@ -13,7 +13,7 @@ def user_menu(user):
             if option == 1:
                 user.editUser
             elif option == 2:
-                user.showList
+                user.showListandProg
             elif option == 3:
                 user.AddShow
             elif option == 4:
