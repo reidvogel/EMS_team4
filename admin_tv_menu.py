@@ -13,19 +13,19 @@ def admin_tv_menu():
     match option:
 
         # See all tv shows
-        case "1":
+        case 1:
             Show.ListShows()
         # Add user information
-        case "2":
+        case 2:
             title = input("Please enter the title of the new show:")
             print(f"Enter the total number of episodes in {title}")
             ep = check_int()
             new_show = Show(title,ep)
             Show.addShow(new_show)
         #delete show
-        case "3":
+        case 3:
             Show.delShow()
-        case "4":
+        case 4:
         #edit tv show
             Show.UpdateShow()
         case _:
