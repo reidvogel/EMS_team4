@@ -16,8 +16,8 @@ def admin_tv_menu():
             Show.ListShows()
         # Add user information
         case "2":
-            title = input()
-            ep = input()
+            title = input("Please enter the title of the new show:")
+            ep = input(f"Enter the total number of episodes in {title}")
             new_show = Show(title,ep)
             Show.addShow(new_show)
         #delete show
