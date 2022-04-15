@@ -1,4 +1,7 @@
 import csv
+from console_progressbar import ProgressBar
+
+pb = ProgressBar(total=100,prefix='Here', suffix='Now', decimals=3, length=50, fill='=', zfill='-')
 
 with open('users.csv',newline='') as file:
     list_of_users = list(csv.reader(file))
@@ -82,6 +85,7 @@ class User():
                 marker = 'completed'
             else: marker=='in progress'
             print(f"{i+1}: {self.shows.name[i]}, Progress: {marker}: {progress}%") #Gotta account for index starting at 0
+            pb.print_progress_bar(progress)
     def updateShowProg(self):
         while True:
             try:
