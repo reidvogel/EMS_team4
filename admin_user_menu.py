@@ -1,3 +1,4 @@
+from tabnanny import check
 from prog_tracker_classes import *
 
 def admin_user_menu(user):
@@ -9,9 +10,9 @@ def admin_user_menu(user):
             print("To edit a specific user, press 3")
             print("To delete a user, press 4")
 
-            option = int(input())
+            option = check_int()
             if option == 1:
-                User.listUsers
+                User.listUsers(User)
             elif option == 2:
                 username = input("Enter the username: ")
                 password = input("Enter the password")
@@ -20,7 +21,7 @@ def admin_user_menu(user):
             elif option == 3:
                 while True:
                     try: 
-                        User.listUsers
+                        User.listUsers(User)
                         username = input("Which user would you like to edit? ")
                         if username in [user.name for user in list_of_users]:
                             user = [user for user in list_of_users if user.name == username][0]
@@ -30,7 +31,7 @@ def admin_user_menu(user):
             elif option == 4:
                 while True:
                     try: 
-                        User.listUsers
+                        User.listUsers(User)
                         username = input("Which user would you like to edit? ")
                         if username in [user.name for user in list_of_users]:
                             user = [user for user in list_of_users if user.name == username][0]
