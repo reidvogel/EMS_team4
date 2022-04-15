@@ -75,7 +75,13 @@ class User():
     def showListandProg(self):
         print("These are the shows you are currently watching and your progress: ")
         for i in self.shows:
-            print(f"{i+1}: {self.shows[i]}, Progress: {self.shows_prog[i+1]}") #Gotta account for index starting at 0
+            progress = (self.shows_prog[i] / self.shows.ep[i]) * 100 
+            if progress == 0:
+                marker = 'not started'
+            elif progress == 100:
+                marker = 'completed'
+            else: marker=='in progress'
+            print(f"{i+1}: {self.shows.name[i]}, Progress: {marker}: {progress}%") #Gotta account for index starting at 0
     def updateShowProg(self):
         while True:
             try:
