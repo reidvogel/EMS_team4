@@ -7,7 +7,7 @@ class PasswordException(Exception): pass
 
 
 #functions
-def check_username(input_role):
+def check_username():
     while True:
         try:
             input_user = input('\nPlease log in by providing your user credentials \nUser Name :')
