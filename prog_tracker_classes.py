@@ -1,12 +1,14 @@
 import csv
-from console_progressbar import ProgressBar
+#from progressbar import *
 
-pb = ProgressBar(total=100,prefix='Here', suffix='Now', decimals=3, length=50, fill='=', zfill='-')
+#pb = ProgressBar(total=100,prefix='Here', suffix='Now', decimals=3, length=50, fill='=', zfill='-')
 
 with open('users.csv',newline='') as file:
-    list_of_users = list(csv.reader(file))
+    users_import = list(csv.reader(file))
 with open('shows.csv', newline='') as file:
-    list_of_shows = list(csv.reader(file))
+    shows_import = list(csv.reader(file))
+list_of_users = []
+list_of_shows = []
 
 def check_int():
     #This function checks if an input was an int type
@@ -22,8 +24,8 @@ class User():
     def __init__(self, username, password, role):
         self.name = username
         self.password = password
-        self.shows = []
-        self.shows_prog = []
+        self.shows = [] 
+        self.shows_prog = [] #This is the number of episodes the user has seen
         self.role = role #user or admin
     def addUser(self): #This is used by sign up or admin
         list_of_users.append(self)
@@ -85,7 +87,7 @@ class User():
                 marker = 'completed'
             else: marker=='in progress'
             print(f"{i+1}: {self.shows.name[i]}, Progress: {marker}: {progress}%") #Gotta account for index starting at 0
-            pb.print_progress_bar(progress)
+            #pb.print_progress_bar(progress)
     def updateShowProg(self):
         while True:
             try:
@@ -132,6 +134,16 @@ class Show():
             except: Exception: print("That is not a valid input")
         
 
-
+for i in users_import:
+    username = i[0]
+    password = i[1]
+    role = i[2]
+    new_user = User(username, password, role)
+    User.addUser(new_user)
+for i in shows_import:
+    title = i[0]
+    ep = i[0]
+    new_show = Show(title,ep)
+    Show.addShow(new_show)
 
 
