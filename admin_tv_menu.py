@@ -26,32 +26,16 @@ def admin_tv_menu():
         case _:
             print("Not a valid input.")
 
-
+#user menu
+            
 def add_tv_show():
     # input new tv show title:
     title = input("Enter name of tv show: ")
-    Show.addshow(title)
     
-    
-
-
-def edit_tv_show():
+def update_tv_show():
     # Locate user by entering their username
-    showtitle = input("Enter existing show: ")
-    for show in shows:
-        if show.shows == showtitle:
-            shows == show
-            break
-        else:
-            print("Show not found")
-            return
-    while True:
-        # Edit existing show title
-        new_title = input("Enter new title: ")
-        # update progress:
-        updated_progress = input("Enter 'not completed', 'in-progress', or 'completed': ")
-    shows.showtitle = newtitle
-    show_prog.progress = updated_progress
+    
+    
 
 def remove_tvshow():
     # Locate show by entering its title
