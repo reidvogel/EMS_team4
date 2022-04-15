@@ -14,6 +14,10 @@ class User():
         list_of_users.append(self)
     def delUser(self): 
         list_of_users.remove(self)
+    def listUsers(self):
+        print("These are the current users: ")
+        for i in list_of_users:
+            print(f"Username: {i.name}, Role: {i.role}")
     def addShow(self, show):
         while True:
             try:
