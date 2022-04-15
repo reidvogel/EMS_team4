@@ -1,5 +1,9 @@
-list_of_users = []
-list_of_shows = []
+import csv
+
+with open('users.csv',newline='') as file:
+    list_of_users = list(csv.reader(file))
+with open('shows.csv', newline='') as file:
+    list_of_shows = list(csv.reader(file))
 
 def check_int():
     #This function checks if an input was an int type
