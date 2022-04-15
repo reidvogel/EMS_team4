@@ -2,10 +2,11 @@ import csv
 #from progressbar import *
 
 #pb = ProgressBar(total=100,prefix='Here', suffix='Now', decimals=3, length=50, fill='=', zfill='-')
-
-with open('users.csv',newline='') as file:
+with open(r"teamproj\users.csv") as file:
+    headers_users = next(file)
     users_import = list(csv.reader(file))
-with open('shows.csv', newline='') as file:
+with open(r'teamproj\shows.csv') as file:
+    headers_shows = next(file)
     shows_import = list(csv.reader(file))
 list_of_users = []
 list_of_shows = []
@@ -135,6 +136,7 @@ class Show():
         
 
 for i in users_import:
+    print(i)
     username = i[0]
     password = i[1]
     role = i[2]
@@ -145,5 +147,4 @@ for i in shows_import:
     ep = i[0]
     new_show = Show(title,ep)
     Show.addShow(new_show)
-
 
