@@ -4,11 +4,12 @@ from prog_tracker_classes import *
 
 # Administration User Menu options:
 def admin_tv_menu():
-    option = input("""Select option:
+    print("""Select option:
     1: View All TV Show
     2: Add New TV Show
     3: Edit Specific TV Show
     4: Remove Specific TV Show""")
+    option = check_int()
     match option:
 
         # See all tv shows
@@ -17,7 +18,8 @@ def admin_tv_menu():
         # Add user information
         case "2":
             title = input("Please enter the title of the new show:")
-            ep = input(f"Enter the total number of episodes in {title}")
+            print(f"Enter the total number of episodes in {title}")
+            ep = check_int()
             new_show = Show(title,ep)
             Show.addShow(new_show)
         #delete show
