@@ -9,7 +9,7 @@ def user_menu(user):
             print("To add a new show, press 3")
             print("To edit your progress on a current show, press 4")
             print("To remove a show from your list, press 5")
-            option = int(input())
+            option = check_int()
             if option == 1:
                 user.editUser
             elif option == 2:
