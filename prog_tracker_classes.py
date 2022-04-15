@@ -15,11 +15,25 @@ class User():
     def delUser(self): 
         list_of_users.remove(self)
     def addShow(self, show):
-        self.shows.append(show)
-        self.shows_prog.append(0) #automatically 0
+        while True:
+            try:
+                Show.ListShows
+                index = input("Please enter the number corresponding to the show you would like to add to your list")
+                if index not in range(len(Show.ListShows)): raise Exception
+                show = Show.ListShows[index]
+                self.shows.append(show)
+                self.shows_prog.append(0) #automatically 0
+            except Exception: print("That is not a valid option")
+        
     def delShow(self, show):
-        index = self.shows.pop(show.name) #delete the show and grab it's index
-        del self.shows_prog[index] #remove the progress from this list as well
+        while True:
+            try:
+                self.showList
+                index = input("Please enter the number of the show you would like to remove from your list")
+                if index not in range(len(self.showList)): raise Exception
+                index = self.shows.pop(show.name) #delete the show and grab it's index
+                del self.shows_prog[index] #remove the progress from this list as well
+            except Exception: print("That is not a valid option")
 
     def editUser(self):
         while True:
@@ -51,9 +65,8 @@ class User():
                 print(f"Enter the number of episodes you have watched for {self.shows[index]}")
                 self.shows_prog[index] = input() #maybe check it's not more than episodes available
             except Exception: print("That is not a valid input")
-        
-             
-            
+
+           
 class Show():
     def __init__(self, name, episodes):
         self.name = name
@@ -62,18 +75,29 @@ class Show():
         list_of_shows.append(self)
         print(f"{self.name} added to List of Available Shows")
     def delShow(self):
-        list_of_shows.remove(self)
-        print(f"{self.name} removed from List of Available Shows")
+        while True:
+            try:
+                self.ListShows()
+                print("Please enter the number corresponding to the show you would like to update: ")
+                index = input()
+                if index not in range(len(list_of_shows)): raise Exception
+                list_of_shows.remove(self)
+                print(f"{self.name} removed from List of Available Shows")
+            except Exception: print("That is not a valid input")
     def ListShows(self):
         print("Here are all the available shows")
         for i in list_of_shows:
             print(f"{i}: {list_of_shows[i]}")
     def UpdateShow(self): #used to change number of episodes
-        self.ListShows()
-        print("Please enter the number corresponding to the show you would like to update: ")
-        index = input()
-        list_of_shows[index].ep = input()
-        print(f"The number of episodes for {list_of_shows[index]} is now {list_of_shows[index].ep}")
+        while True:
+            try:
+                self.ListShows()
+                print("Please enter the number corresponding to the show you would like to update: ")
+                index = input()
+                if index not in range(len(list_of_shows)): raise Exception
+                list_of_shows[index].ep = input()
+                print(f"The number of episodes for {list_of_shows[index]} is now {list_of_shows[index].ep}")
+            except: Exception: print("That is not a valid input")
         
 
 
