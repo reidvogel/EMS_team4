@@ -2,6 +2,7 @@ from login import *
 from classes import *
 import csv
 
+class InputException(Exception): pass
 #Log in first and get user object
 user = Login()
 
@@ -116,8 +117,8 @@ def user_menu(user):
                 User.updateShowProg(user)
             elif option == 5:
                 User.delShow(user)
-            else: raise Exception
-        except Exception: print("That is not a valid option")
+            else: raise InputException
+        except InputException: print("That is not a valid option !")
 #This is the big main function that calls the admin/ user menus
 if user.role == "admin":
     admin_menu(user)

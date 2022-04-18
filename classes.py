@@ -10,7 +10,7 @@ with open(r'teamproj\shows.csv') as file:
     shows_import = list(csv.reader(file))
 list_of_users = []
 list_of_shows = []
-
+class IndexException(Exception): pass
 def check_int():
     #This function checks if an input was an int type
     while True:
@@ -57,13 +57,13 @@ class User():
                     self.shows_prog.append(0) #automatically 0
                     print(f"{show.name} added to {self.name}'s list")
                     return
-                else:raise Exception
-            except Exception: print("That is not a valid option")
+                else:raise IndexException
+            except IndexException: print("That is not a valid option")
         
     def delShow(self):
         while True:
             try:
-                self.showList(self)
+                self.showList()
                 print("Please enter the number of the show you would like to remove from your list")
                 index=check_int() 
                 index = index - 1 #account for starting at 0
@@ -73,8 +73,8 @@ class User():
                     del self.shows_prog[index] #remove the progress from this list as well\
                     print(f"{show.name} removed from {self.name}'s list")
                     return
-                else: raise Exception
-            except Exception: print("That is not a valid option!")
+                else: raise IndexException
+            except IndexException: print("That is not a valid option!")
 
     def editUser(self):
         while True:
@@ -93,23 +93,23 @@ class User():
             except Exception: print("Please enter a valid option")
     def showList(self):
         print(f"These are the shows currently on {self.name}'s list: ")
-        for i in self.shows:
-            print(f"{i+1}: {self.shows[i]}") #Gotta account for index starting at 0
+        for i in range(len(self.shows)):
+            print(f"{i+1}: {self.shows[i].name}") #Gotta account for index starting at 0
     def showListandProg(self):
         print("These are the shows you are currently watching and your progress: ")
-        print(self.shows.name)
         for i in range(len(self.shows)):
-            print(self.shows_prog[i], self.shows.ep[i])
-            progress = (self.shows_prog[i] / self.shows.ep[i]) * 100 
-            print(progress)
-            if progress == 0:
+            if self.shows_prog[i] == 0:
+                progress = 0
                 marker = 'not started'
-            elif progress == 100:
+            elif self.shows_prog[i] == self.shows[i].ep:
+                progress = 100
                 marker = 'completed'
-            else: marker=='in progress'
-            print(f"{i+1}: {self.shows.name[i]}, Progress: {marker}: {progress}%") #Gotta account for index starting at 0
+            else: 
+                progress = round((self.shows_prog[i] / self.shows[i].ep) * 100 ,2)
+                marker = 'in progress'
+            print(f"{i+1}: {self.shows[i].name}, Progress: {marker}: {progress}%") #Gotta account for index starting at 0
             #pb.print_progress_bar(progress)
-            return
+        return
     def updateShowProg(self):
         while True:
             try:
@@ -117,10 +117,11 @@ class User():
                 print("Please enter the number corresponding to the show you would like to update progress: ")
                 index = check_int()
                 index = index - 1 #Gotta account for index starting at 0
-                if index not in range(len(list_of_shows)): raise Exception
-                print(f"Enter the number of episodes you have watched for {self.shows[index]}")
+                if index not in range(len(list_of_shows)): raise IndexException
+                print(f"Enter the number of episodes you have watched for {self.shows[index].name}")
                 self.shows_prog[index] = check_int() #maybe check it's not more than episodes available
-            except Exception: print("That is not a valid input!!!")
+                return
+            except IndexException: print("That is not a valid input!!!")
 
            
 class Show():
@@ -147,7 +148,7 @@ class Show():
     def ListShows(self):
         print("Here are all the available shows")
         for i in range(len(list_of_shows)):
-            print(f"{i+1}: {list_of_shows[i].name}")
+            print(f"{i+1}: {list_of_shows[i].name} - {list_of_shows[i].ep} Episodes")
         return
     def UpdateShow(self): #used to change number of episodes
         while True:
@@ -164,6 +165,7 @@ class Show():
                     return
                 else:raise Exception
             except: Exception: print("That is not a valid input")
+            return
         
 
 for i in users_import:
@@ -175,7 +177,7 @@ for i in users_import:
     User.addUser(new_user)
 for i in shows_import:
     title = i[0]
-    ep = i[0]
+    ep = int(i[1])
     new_show = Show(title,ep)
     Show.addShow(new_show)
 

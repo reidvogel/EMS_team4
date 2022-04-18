@@ -1,12 +1,8 @@
 #imports
-from prog_tracker_classes import *
-
-#classes
+from classes import *
 class UsernameException(Exception): pass
 class PasswordException(Exception): pass
 
-
-#functions
 def check_username():
     while True:
         try:
@@ -21,7 +17,7 @@ def check_username():
 def check_password(user):
     while True:
         try:
-            input_password = input("Please enter your password")
+            input_password = input("Please enter your password: ")
             if input_password == user.password:
                 return
             else: raise PasswordException
@@ -36,3 +32,5 @@ def Login():
         check_password(user)
         
         return user
+
+
